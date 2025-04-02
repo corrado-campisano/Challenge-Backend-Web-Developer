@@ -1,0 +1,14 @@
+img.header-logo {
+	height: 40px;
+}
+
+header.header {
+	display: grid;
+	grid: 40px / auto auto auto;
+	justify-items: left;
+}
+
+div.link {
+	font-variant: small-caps;
+	padding: 10px 0;
+}

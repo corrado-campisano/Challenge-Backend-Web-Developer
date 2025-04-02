@@ -4,9 +4,9 @@
   "newProjectRoot": "projects",
   "projects": {
     "frontend": {
+	  "root": "",
       "projectType": "application",
       "schematics": {},
-      "root": "",
       "sourceRoot": "src",
       "prefix": "app",
       "architect": {
