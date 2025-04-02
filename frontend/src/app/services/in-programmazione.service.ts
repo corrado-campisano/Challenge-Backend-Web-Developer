@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
-import { signal } from '@angular/core';
 import { Film } from '../model/film.type';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class InProgrammazioneService {
 
-	filmsSignal = signal<Array<Film>>([]);
+	url = 'http://localhost:8080/filmsInProgrammazione/';
 	
-	constructor() { }
-	
-	ngOnInit() {
+	async getCurrent(): Promise<Array<Film>> {
+		const data = await fetch(this.url);
 		
+		return await data.json() ?? [];
 	}
 }

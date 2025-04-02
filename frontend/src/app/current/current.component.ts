@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Film } from '../model/film.type';
 
 @Component({
   selector: 'app-current',
@@ -7,6 +8,7 @@ import { Component } from '@angular/core';
   templateUrl: './current.component.html',
   styleUrl: './current.component.css'
 })
+
 export class CurrentComponent {
 
 }

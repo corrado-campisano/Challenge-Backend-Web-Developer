@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Film } from '../model/film.type';
 
 @Component({
   selector: 'app-history',
@@ -7,6 +8,7 @@ import { Component } from '@angular/core';
   templateUrl: './history.component.html',
   styleUrl: './history.component.css'
 })
+
 export class HistoryComponent {
 
 }
