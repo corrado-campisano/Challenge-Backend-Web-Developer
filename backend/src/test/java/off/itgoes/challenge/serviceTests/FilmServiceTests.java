@@ -12,10 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
-import off.itgoes.challenge.programmazione.Film;
-import off.itgoes.challenge.programmazione.FilmDto;
-import off.itgoes.challenge.programmazione.FilmPeriodException;
-import off.itgoes.challenge.programmazione.FilmService;
+import off.itgoes.challenge.programmazione.film.Film;
+import off.itgoes.challenge.programmazione.film.FilmDto;
+import off.itgoes.challenge.programmazione.film.FilmPeriodException;
+import off.itgoes.challenge.programmazione.film.FilmService;
 
 @SpringBootTest
 @Transactional

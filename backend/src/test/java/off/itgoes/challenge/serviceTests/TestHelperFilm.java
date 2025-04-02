@@ -2,9 +2,9 @@ package off.itgoes.challenge.serviceTests;
 
 import java.time.LocalDate;
 
-import off.itgoes.challenge.programmazione.Film;
-import off.itgoes.challenge.programmazione.FilmDto;
-import off.itgoes.challenge.programmazione.FilmService;
+import off.itgoes.challenge.programmazione.film.Film;
+import off.itgoes.challenge.programmazione.film.FilmDto;
+import off.itgoes.challenge.programmazione.film.FilmService;
 
 public class TestHelperFilm {
 

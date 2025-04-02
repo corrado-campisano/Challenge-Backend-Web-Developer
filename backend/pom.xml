@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>off.itgoes.challenge</groupId>
 	<artifactId>challenge</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2</version>
 	<name>challenge</name>
 	<description>challenge</description>
 	<url/>

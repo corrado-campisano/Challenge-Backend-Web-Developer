@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
-import off.itgoes.challenge.programmazione.Film;
+import off.itgoes.challenge.programmazione.film.Film;
 
 public class TestHelperFilm {
 

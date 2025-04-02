@@ -1,4 +1,4 @@
-package off.itgoes.challenge.programmazione;
+package off.itgoes.challenge.programmazione.film;
 
 import java.util.ArrayList;
 import java.util.List;

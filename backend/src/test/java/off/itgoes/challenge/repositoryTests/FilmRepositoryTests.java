@@ -12,8 +12,8 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
-import off.itgoes.challenge.programmazione.Film;
-import off.itgoes.challenge.programmazione.FilmRepository;
+import off.itgoes.challenge.programmazione.film.Film;
+import off.itgoes.challenge.programmazione.film.FilmRepository;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)
