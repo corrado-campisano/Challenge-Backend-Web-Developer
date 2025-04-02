@@ -1,27 +1,15 @@
-# Frontend
+# Challenge - Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.11.
+### Requirements
 
-## Development server
+Implementazione del backend in Java/SpringBoot per la challenge [Backend Web Developer](https://www.lascaux.it/challenge/backend-web-developer/)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+### Version 0.0.1_vanilla
 
-## Code scaffolding
+In questa implementazione di base non e' gestita la relazione tra i film in programmazione e le relative sale, che in effetti non e' richiesta esplicitamente nella challenge.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Per questo, in prima battuta, la "sala di proiezione" e' un semplice attributo dell'entity "Film".
 
-## Build
+Questa implementazione di base e' contenuta nel branch "vanilla", che viene implementato per primo, non potendo stimare il tempo necessario ad un'implementazione completa, nelle prime fasi di sviluppo, rispetto al tempo concesso per completare la challenge.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Vedere il branch "gestione_sale" per una implementazione piu' completa, che sara' realizzata compatibilmente con le restrizioni sulla data di consegna (vedere "negotiating requirements", nel contesto della metodologia agile).
