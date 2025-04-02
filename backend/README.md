@@ -4,7 +4,7 @@
 
 Implementazione del backend in Java/SpringBoot per la challenge [Backend Web Developer](https://www.lascaux.it/challenge/backend-web-developer/)
 
-### Version 0.0.1 - Vanilla
+### Version 0.0.1_vanilla
 
 In questa implementazione di base non e' gestita la relazione tra i film in programmazione e le relative sale, che in effetti non e' richiesta esplicitamente nella challenge.
 
