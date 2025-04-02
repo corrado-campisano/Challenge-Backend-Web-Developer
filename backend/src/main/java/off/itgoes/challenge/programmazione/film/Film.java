@@ -22,4 +22,6 @@ public class Film {
 	private LocalDate inizioProgrammazione;
 	
 	private LocalDate fineProgrammazione;
+	
+	private String salaDiProiezione;
 }

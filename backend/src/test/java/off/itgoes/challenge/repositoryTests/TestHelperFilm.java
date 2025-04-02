@@ -8,13 +8,15 @@ import off.itgoes.challenge.programmazione.film.Film;
 
 public class TestHelperFilm {
 
-	public static Film createFilm(TestEntityManager entityManager, String titolo, LocalDate inizioProgrammazione, LocalDate fineProgrammazione) {
+	public static Film createFilm(TestEntityManager entityManager, String titolo, 
+			LocalDate inizioProgrammazione, LocalDate fineProgrammazione, String sala) {
 		
 		Film entity = new Film();
 		
 		entity.setTitolo(titolo);
 		entity.setInizioProgrammazione(inizioProgrammazione);
 		entity.setFineProgrammazione(fineProgrammazione);
+		entity.setSalaDiProiezione(sala);
 		
 		Film savedEntity = saveEntity(entityManager, entity);
 		
