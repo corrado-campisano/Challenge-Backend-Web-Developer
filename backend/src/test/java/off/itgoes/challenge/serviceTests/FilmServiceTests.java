@@ -116,31 +116,31 @@ public class FilmServiceTests {
 		// su ricerca il 2025-01-22: passato
 		TestHelperFilm.createFilm(filmService, "Il dottor Stranamore", 
 				LocalDate.now().minusDays(21),	// era 1	= 22 - 21
-				LocalDate.now().minusDays(8)	// era 14	= 22 - 8
-				);
+				LocalDate.now().minusDays(8),	// era 14	= 22 - 8
+				"sala 1");
 
 		// su ricerca il 2025-01-22: passato
 		TestHelperFilm.createFilm(filmService, "2001: odissea nello spazio", 
 				LocalDate.now().minusDays(14),	// era 8	= 22 - 14
-				LocalDate.now().minusDays(1)	// era 21	= 22 - 1
-				);
+				LocalDate.now().minusDays(1),	// era 21	= 22 - 1
+				"sala 2");
 
 		// su ricerca il 2025-01-22: passato
 		TestHelperFilm.createFilm(filmService, "Barry Lyndon", 
 				LocalDate.now().minusDays(7),	// era 15	= 22 - 7
-				LocalDate.now().minusDays(1)	// era 21	= 22 - 1
-				);
+				LocalDate.now().minusDays(1),	// era 21	= 22 - 1
+				"sala 1");
 
 		// su ricerca il 2025-01-22: in programmazione
 		TestHelperFilm.createFilm(filmService, "Arancia meccanica", 
 				LocalDate.now().minusDays(14),	// era 8	= 22 - 14
-				LocalDate.now().plusDays(6)		// era 28	= 22 + 6
-				);
+				LocalDate.now().plusDays(6),		// era 28	= 22 + 6
+				"sala 3");
 		
 		// su ricerca il 2025-01-22: in programmazione
 		TestHelperFilm.createFilm(filmService, "Full Metal Jacket", 
 				LocalDate.now().minusDays(7),	// era 15	= 22 - 7
-				LocalDate.now().plusDays(6)		// era 28	= 22 + 6
-				);
+				LocalDate.now().plusDays(6),		// era 28	= 22 + 6
+				"sala 4");
 	}
 }

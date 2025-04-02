@@ -61,22 +61,22 @@ public class FilmRepositoryTests {
 		
 		// su ricerca il 2025-01-22: passato
 		TestHelperFilm.createFilm(entityManager, "Il dottor Stranamore", 
-				LocalDate.of(2025, 1, 1), LocalDate.of(2025, 1, 14));
+				LocalDate.of(2025, 1, 1), LocalDate.of(2025, 1, 14), "sala 1");
 		
 		// su ricerca il 2025-01-22: passato
 		TestHelperFilm.createFilm(entityManager, "2001: odissea nello spazio", 
-				LocalDate.of(2025, 1, 8), LocalDate.of(2025, 1, 21));
+				LocalDate.of(2025, 1, 8), LocalDate.of(2025, 1, 21), "sala 2");
 		
 		// su ricerca il 2025-01-22: passato
 		TestHelperFilm.createFilm(entityManager, "Barry Lyndon", 
-				LocalDate.of(2025, 1, 15), LocalDate.of(2025, 1, 21));
+				LocalDate.of(2025, 1, 15), LocalDate.of(2025, 1, 21), "sala 1");
 		
 		// su ricerca il 2025-01-22: in programmazione
 		TestHelperFilm.createFilm(entityManager, "Arancia meccanica", 
-				LocalDate.of(2025, 1, 8), LocalDate.of(2025, 1, 28));
+				LocalDate.of(2025, 1, 8), LocalDate.of(2025, 1, 28), "sala 3");
 		
 		// su ricerca il 2025-01-22: in programmazione
 		TestHelperFilm.createFilm(entityManager, "Full Metal Jacket", 
-				LocalDate.of(2025, 1, 15), LocalDate.of(2025, 1, 28));
+				LocalDate.of(2025, 1, 15), LocalDate.of(2025, 1, 28), "sala 4");
 	}
 }
