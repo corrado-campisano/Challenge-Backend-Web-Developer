@@ -1,4 +1,4 @@
-package off.itgoes.challenge.databaseTests;
+package off.itgoes.challenge.repositoryTests;
 
 import java.time.LocalDate;
 
@@ -22,6 +22,7 @@ public class TestHelperFilm {
 	}
 
 	private static Film saveEntity(TestEntityManager entityManager, Film entity) {
+		
 		entityManager.persist(entity);
 		entityManager.flush();
 		
@@ -29,6 +30,4 @@ public class TestHelperFilm {
 		
 		return savedEntity;
 	}
-	
-	
 }
