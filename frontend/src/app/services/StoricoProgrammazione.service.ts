@@ -9,7 +9,7 @@ export class StoricoProgrammazioneService {
 
 	url = 'http://localhost:8080/storicoFilmsPassati/';
 	
-	async getCurrent(): Promise<Array<Film>> {
+	async getStoricoFilms(): Promise<Film[]> {
 		const data = await fetch(this.url);
 		
 		return await data.json() ?? [];

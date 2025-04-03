@@ -1,1 +1,32 @@
-<p>current works!</p>
+
+<h3 align="center">Programmazione Corrente CineMille</h3>
+
+<table mat-table [dataSource]="dataSource()" class="mat-elevation-z8">
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="titolo">
+    <th mat-header-cell *matHeaderCellDef>Titolo</th>
+    <td mat-cell *matCellDef="let element">{{element.titolo}}</td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="inizioProgrammazione">
+    <th mat-header-cell *matHeaderCellDef>Inizio Programmazione</th>
+    <td mat-cell *matCellDef="let element">{{element.inizioProgrammazione}}</td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="fineProgrammazione">
+    <th mat-header-cell *matHeaderCellDef>Fine Programmazione</th>
+    <td mat-cell *matCellDef="let element">{{element.fineProgrammazione}}</td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="salaDiProiezione">
+    <th mat-header-cell *matHeaderCellDef>Sala di Proiezione</th>
+    <td mat-cell *matCellDef="let element">{{element.salaDiProiezione}}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

@@ -9,7 +9,7 @@ export class InProgrammazioneService {
 
 	url = 'http://localhost:8080/filmsInProgrammazione/';
 	
-	async getCurrent(): Promise<Array<Film>> {
+	async getCurrentFilms(): Promise<Array<Film>> {
 		const data = await fetch(this.url);
 		
 		return await data.json() ?? [];
