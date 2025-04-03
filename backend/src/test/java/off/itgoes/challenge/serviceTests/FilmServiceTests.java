@@ -87,8 +87,11 @@ public class FilmServiceTests {
 		// given
 		creaInsiemeDiFilmPerTestRicerca();
 
+		LocalDate inizio = LocalDate.now();
+		LocalDate fine = LocalDate.now();
+		
 		// when
-		List<FilmDto> filmsInProgrammazione = filmService.getFilmsInProgrammazione();
+		List<FilmDto> filmsInProgrammazione = filmService.getFilmsInProgrammazione(inizio, fine);
 
 		// then
 		assertEquals(2, filmsInProgrammazione.size());

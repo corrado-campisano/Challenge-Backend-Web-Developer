@@ -1,0 +1,7 @@
+
+div.search {
+	display: grid;
+	grid: 50px / auto auto auto;
+	justify-items: left;
+	padding: 50px 20px;
+}

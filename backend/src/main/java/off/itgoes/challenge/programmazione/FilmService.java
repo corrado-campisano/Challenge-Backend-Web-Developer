@@ -37,11 +37,13 @@ public class FilmService {
 		return savedEntity;
 	}
 	
-	public List<FilmDto> getFilmsInProgrammazione() {
-		LocalDate now = LocalDate.now();
+	public List<FilmDto> getFilmsInProgrammazione(LocalDate inizioProgrammazione, LocalDate fineProgrammazione) {
+		
+		if (inizioProgrammazione==null) inizioProgrammazione = LocalDate.now();
+		if (fineProgrammazione==null) fineProgrammazione = LocalDate.now();
 		
 		List<Film> entities = filmRepository
-				.findAllByInizioProgrammazioneLessThanEqualAndFineProgrammazioneGreaterThanEqual(now, now);
+				.findAllByInizioProgrammazioneLessThanEqualAndFineProgrammazioneGreaterThanEqual(inizioProgrammazione, fineProgrammazione);
 		
 		List<FilmDto> filmsInProgrammazione = entities.stream()
 				.map(entity -> FilmFactory.getDtoFromEntity(entity))
