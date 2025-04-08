@@ -1,7 +1,9 @@
 
 export interface Film {
 	titoloFilm: string,
+	idFilm: number,
 	inizioProgrammazione: Date,
 	fineProgrammazione: Date,
-	nomeSala: string
+	nomeSala: string,
+	idSale: number
 }

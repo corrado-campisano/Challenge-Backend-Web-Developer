@@ -7,11 +7,16 @@ import { Film } from '../model/film.type';
 
 export class InProgrammazioneService {
 
-	url = 'http://localhost:8080/filmsInProgrammazione/';
+	url = 'http://localhost:8080/filmsInProgrammazione';
 	
-	async getCurrentFilms(): Promise<Array<Film>> {
-		const data = await fetch(this.url);
+	async getCurrentFilms(inizioProgrammazione: string, fineProgrammazione: string): Promise<Array<Film>> {
+		const query = this.url + 
+				"?inizioProgrammazione=" + inizioProgrammazione + 
+				"&fineProgrammazione=" + fineProgrammazione;
+		//console.log("Querystring: " + query);
 		
+		const data = await fetch(query);
+				
 		return await data.json() ?? [];
 	}
 }
