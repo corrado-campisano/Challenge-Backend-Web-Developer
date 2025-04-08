@@ -20,4 +20,8 @@ describe('DateRangePickerComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> gestione_sale

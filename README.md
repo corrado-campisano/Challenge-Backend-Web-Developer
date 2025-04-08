@@ -4,18 +4,12 @@
 
 Implementazione del backend in Java/SpringBoot per la challenge [Backend Web Developer](https://www.lascaux.it/challenge/backend-web-developer/)
 
-### Version 0.0.1_vanilla
+### Version 0.0.3 "gestione sale"
 
-In questa implementazione di base non e' gestita la relazione tra i film in programmazione e le relative sale, che in effetti non e' richiesta esplicitamente nella challenge.
+In questa versione e' gestita la relazione tra i film in programmazione e le relative sale, anche se non e' richiesta esplicitamente nella challenge, utilizzando le relazioni @OneToMany e @ManyToOne di JPA.
 
-Per questo, in prima battuta, la "sala di proiezione" e' un semplice attributo dell'entity "Film".
+Sono stati inoltre aggiunti e/o migliorati i controlli di validazione, vedere readme del backend per i dettagli.
 
-Questa implementazione di base e' contenuta nel branch "vanilla", che viene implementato per primo, non potendo stimare il tempo necessario ad un'implementazione completa, nelle prime fasi di sviluppo, rispetto al tempo concesso per completare la challenge.
+Per testare tali controlli di validazione, sono state ristrutturate le classi di test, sia a livello di database/entity che di servizi/business logic.
 
-Sempre per motivi di tempo, in prima battuta:
- 
- * non vengono incluse le validazioni di base sui campi (quelle con "org.hibernate.validator") e relativi test cases;
- * i test cases implementati si limitano alle restrizioni sulla durata delle programmazioni ed agli use cases ("lista film in proiezione" e "lista storico film passati");
- * non viene validata l'eventuale sovrapposizione di piu' film in una sala di proiezione, non essendo gestita la relazione tra film e sale.
-
-Vedere il branch "gestione_sale" per una implementazione piu' completa, che sara' realizzata compatibilmente con le restrizioni sulla data di consegna (vedere "negotiating requirements", nel contesto della metodologia agile).
+In questa versione non e' cambiato molto sul frontend, se non a livello dell'interface "film.type", che e' stata riallineata alla ProiezioneDto del backend, con un semplice cambiamento nella nomenclatura dei campi.

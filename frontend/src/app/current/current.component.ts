@@ -24,7 +24,7 @@ export class CurrentComponent {
 	
 	inProgrammazioneService: InProgrammazioneService = inject(InProgrammazioneService);
 	
-	displayedColumns: string[] = ['titolo', 'inizioProgrammazione', 'fineProgrammazione', 'salaDiProiezione'];
+	displayedColumns: string[] = ['titoloFilm', 'inizioProgrammazione', 'fineProgrammazione', 'nomeSala'];
 	dataSource: WritableSignal<Film[]> = signal([]);
 	
 	searchDefault: string = formatDate(Date.now(),'yyyy-MM-dd',"en-US");
@@ -54,7 +54,7 @@ export class CurrentComponent {
 		);
 	}
 	
-	fullSearch() {
+	todaySearch() {
 		this.inProgrammazioneService.getCurrentFilms(this.searchDefault, this.searchDefault).then(
 			(filmListResult: Film[]) => {
 				this.dataSource.set(filmListResult);
@@ -63,6 +63,6 @@ export class CurrentComponent {
 	}
 	
 	ngOnInit() {
-		this.fullSearch();
+		this.todaySearch();
 	}
 }

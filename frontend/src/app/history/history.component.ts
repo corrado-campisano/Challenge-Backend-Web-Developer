@@ -18,7 +18,7 @@ export class HistoryComponent {
 
 	storicoProgrammazioneService: StoricoProgrammazioneService = inject(StoricoProgrammazioneService);
 	
-	displayedColumns: string[] = ['titolo', 'inizioProgrammazione', 'fineProgrammazione', 'salaDiProiezione'];
+	displayedColumns: string[] = ['titoloFilm', 'inizioProgrammazione', 'fineProgrammazione', 'nomeSala'];
 	dataSource: WritableSignal<Film[]> = signal([]);
 	
 	ngOnInit() {

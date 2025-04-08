@@ -1,4 +1,4 @@
-package off.itgoes.challenge.programmazione;
+package off.itgoes.challenge.programmazione.proiezione;
 
 import java.time.LocalDate;
 
@@ -6,15 +6,18 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-public class FilmDto {
+public class ProiezioneDto {
 
 	private Long id;
-	
-	private String titolo;
 	
 	private LocalDate inizioProgrammazione;
 	
 	private LocalDate fineProgrammazione;
 	
-	private String salaDiProiezione;
+	private String nomeSala;	
+	private Long idSala;
+	
+	private String titoloFilm;
+	private Long idFilm;
+	
 }

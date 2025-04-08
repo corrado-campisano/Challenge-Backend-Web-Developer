@@ -59,4 +59,8 @@ export class DateRangePickerComponent {
 	     	}
 	    });
 	}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> gestione_sale

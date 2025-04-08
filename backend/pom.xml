@@ -12,8 +12,8 @@
 	
 	<groupId>off.itgoes.challenge</groupId>
 	<artifactId>challenge</artifactId>
-	<version>0.0.1_vanilla</version>
-	
+	<version>0.0.3</version>
+
 	<name>challenge</name>
 	<description>challenge</description>
 	
@@ -27,6 +27,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		
+		<!-- hibernate bean validation -->
+		<dependency>
+		    <groupId>org.hibernate.validator</groupId>
+		    <artifactId>hibernate-validator</artifactId>
+	    </dependency>
 		
 		<!-- JPA and MariaDB -->
 		<dependency>
