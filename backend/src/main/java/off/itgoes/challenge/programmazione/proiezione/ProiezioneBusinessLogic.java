@@ -1,23 +1,20 @@
-package off.itgoes.challenge.programmazione.film;
+package off.itgoes.challenge.programmazione.proiezione;
 
 import java.time.LocalDate;
 import java.time.Period;
-
-import org.springframework.stereotype.Service;
 
 import off.itgoes.challenge.programmazione.film.exceptions.FilmPeriodException;
 import off.itgoes.challenge.programmazione.film.exceptions.FilmTecnologyException;
 import off.itgoes.challenge.programmazione.sala.SalaRepository;
 import off.itgoes.challenge.programmazione.tecnologia.Tecnologia;
 
-@Service
-public class FilmBusinessLogic {
+public class ProiezioneBusinessLogic {
 
-	public void validaDateFilm(Film film) {
+	public void validaDateFilm(Proiezione proiezione) {
 		// validazione: massimo tre settimane, minimo una
 		
 		Period durataProgrammazione = Period
-				.between(film.getInizioProgrammazione(), film.getFineProgrammazione())
+				.between(proiezione.getInizioProgrammazione(), proiezione.getFineProgrammazione())
 				.plusDays(1);
 		
 		if (durataProgrammazione.getDays()<7 || durataProgrammazione.getDays()>21) {
@@ -25,11 +22,11 @@ public class FilmBusinessLogic {
 		}
 	}
 	
-	public void validaTecnologiaFilmVsSala(Film film) {
+	public void validaTecnologiaFilmVsSala(Proiezione proiezione) {
 		// la tecnologia della sala e quella del film devono coincidere
 		
-		Tecnologia tecnologiaFilm = film.getTecnologiaFilm();
-		Tecnologia tecnologiaSala = film.getSala().getTecnologiaSala();
+		Tecnologia tecnologiaFilm = proiezione.getFilm().getTecnologiaFilm();
+		Tecnologia tecnologiaSala = proiezione.getSala().getTecnologiaSala();
 		
 		if (tecnologiaFilm.getId() != tecnologiaSala.getId()) {
 			throw new FilmTecnologyException("La tecnologia della sala "
@@ -41,9 +38,9 @@ public class FilmBusinessLogic {
 		}
 	}
 	
-	public void validaSalaLiberaNelPeriodo(Film film, SalaRepository salaRepository) {
-		LocalDate inizioProgrammazioneFilm = film.getInizioProgrammazione();
-		LocalDate fineProgrammazioneFilm = film.getFineProgrammazione();
+	public void validaSalaLiberaNelPeriodo(Proiezione proiezione, SalaRepository salaRepository) {
+		LocalDate inizioProgrammazioneFilm = proiezione.getInizioProgrammazione();
+		LocalDate fineProgrammazioneFilm = proiezione.getFineProgrammazione();
 		
 		// TODO : spostare le date nell'entity "Proiezione" e rivedere i test
 	}

@@ -1,7 +1,5 @@
 package off.itgoes.challenge.programmazione.film;
 
-import java.time.LocalDate;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,13 +9,6 @@ public class FilmDto {
 	private Long id;
 	
 	private String titolo;
-	
-	private LocalDate inizioProgrammazione;
-	
-	private LocalDate fineProgrammazione;
-	
-	private String nomeSala;
-	private Long idSala;
 	
 	private String nomeTecnologia;
 	private Long idTecnologia;

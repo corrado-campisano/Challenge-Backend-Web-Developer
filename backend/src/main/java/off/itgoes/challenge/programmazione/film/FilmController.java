@@ -9,17 +9,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
+import off.itgoes.challenge.programmazione.proiezione.ProiezioneDto;
+import off.itgoes.challenge.programmazione.proiezione.ProiezioneService;
 
 @RestController
 @RequiredArgsConstructor
 public class FilmController {
 
-	private final FilmService filmService;
+	private final ProiezioneService proiezioneService;
 	
 	@GetMapping("/filmsInProgrammazione/")
-	public ResponseEntity<List<FilmDto>> getFilmsInProgrammazione() {
+	public ResponseEntity<List<ProiezioneDto>> getFilmsInProgrammazione() {
 		
-		List<FilmDto> lista = filmService.getFilmsInProgrammazione();
+		List<ProiezioneDto> lista = proiezioneService.getFilmsInProgrammazione();
 		
 		if (lista==null || lista.isEmpty()) {
 			return new ResponseEntity<>(new ArrayList<>(), HttpStatus.NO_CONTENT);
@@ -29,9 +31,9 @@ public class FilmController {
 	}	
 
 	@GetMapping("/storicoFilmsPassati/")
-	public ResponseEntity<List<FilmDto>> getStoricoFilmsPassati() {
+	public ResponseEntity<List<ProiezioneDto>> getStoricoFilmsPassati() {
 		
-		List<FilmDto> lista = filmService.getStoricoFilmsPassati();
+		List<ProiezioneDto> lista = proiezioneService.getStoricoFilmsPassati();
 		
 		if (lista==null || lista.isEmpty()) {
 			return new ResponseEntity<>(new ArrayList<>(), HttpStatus.NO_CONTENT);

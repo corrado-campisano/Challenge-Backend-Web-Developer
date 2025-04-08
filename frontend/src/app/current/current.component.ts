@@ -18,7 +18,7 @@ export class CurrentComponent {
 	
 	inProgrammazioneService: InProgrammazioneService = inject(InProgrammazioneService);
 	
-	displayedColumns: string[] = ['titolo', 'inizioProgrammazione', 'fineProgrammazione', 'salaDiProiezione'];
+	displayedColumns: string[] = ['titoloFilm', 'inizioProgrammazione', 'fineProgrammazione', 'nomeSala'];
 	dataSource: WritableSignal<Film[]> = signal([]);
 	
 	ngOnInit() {

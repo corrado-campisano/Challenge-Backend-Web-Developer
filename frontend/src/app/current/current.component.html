@@ -6,7 +6,7 @@
   <!-- Position Column -->
   <ng-container matColumnDef="titolo">
     <th mat-header-cell *matHeaderCellDef>Titolo</th>
-    <td mat-cell *matCellDef="let element">{{element.titolo}}</td>
+    <td mat-cell *matCellDef="let element">{{element.titoloFilm}}</td>
   </ng-container>
 
   <!-- Name Column -->
@@ -24,7 +24,7 @@
   <!-- Symbol Column -->
   <ng-container matColumnDef="salaDiProiezione">
     <th mat-header-cell *matHeaderCellDef>Sala di Proiezione</th>
-    <td mat-cell *matCellDef="let element">{{element.salaDiProiezione}}</td>
+    <td mat-cell *matCellDef="let element">{{element.nomeSala}}</td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

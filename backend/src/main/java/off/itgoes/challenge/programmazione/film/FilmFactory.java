@@ -5,8 +5,6 @@ import java.util.Optional;
 import org.springframework.beans.BeanUtils;
 
 import jakarta.persistence.EntityNotFoundException;
-import off.itgoes.challenge.programmazione.sala.Sala;
-import off.itgoes.challenge.programmazione.sala.SalaRepository;
 import off.itgoes.challenge.programmazione.tecnologia.Tecnologia;
 import off.itgoes.challenge.programmazione.tecnologia.TecnologiaRepository;
 
@@ -16,18 +14,14 @@ public class FilmFactory {
 		FilmDto dto = new FilmDto();
 		
 		BeanUtils.copyProperties(entity, dto);
-		
-		dto.setNomeSala(entity.getSala().getNome());
-		dto.setIdSala(entity.getSala().getId());
-		
+				
 		dto.setNomeTecnologia(entity.getTecnologiaFilm().getNome());
 		dto.setIdTecnologia(entity.getTecnologiaFilm().getId());
 		
 		return dto;
 	}
 	
-	public static Film getEntityFromDto(FilmDto dto, 
-			TecnologiaRepository tecnologiaRepository, SalaRepository salaRepository) {
+	public static Film getEntityFromDto(FilmDto dto, TecnologiaRepository tecnologiaRepository) {
 		
 		Film entity = new Film();
 		
@@ -40,15 +34,7 @@ public class FilmFactory {
 					+ " e nome: " + dto.getNomeTecnologia());
 		}
 		entity.setTecnologiaFilm(tecnologiaOpt.get());
-		
-		Optional<Sala> salaOpt = salaRepository.findById(dto.getIdSala());
-		if (salaOpt.isEmpty()) {
-			throw new EntityNotFoundException(("Impossibile trovare la sala di "
-					+ "ID: " + dto.getIdSala())
-					+ " e nome: " + dto.getNomeSala());
-		}
-		entity.setSala(salaOpt.get());
-		
+				
 		return entity;
 	}
 }

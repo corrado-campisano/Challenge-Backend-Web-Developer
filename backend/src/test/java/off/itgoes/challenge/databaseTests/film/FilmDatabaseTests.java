@@ -1,10 +1,6 @@
 package off.itgoes.challenge.databaseTests.film;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-
-import java.time.LocalDate;
-import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,12 +11,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
 import jakarta.validation.ConstraintViolationException;
-import off.itgoes.challenge.ConstantsTestHelper;
-import off.itgoes.challenge.databaseTests.sala.TestHelperSala;
 import off.itgoes.challenge.databaseTests.tecnologia.TestHelperTecnologia;
-import off.itgoes.challenge.programmazione.film.Film;
-import off.itgoes.challenge.programmazione.film.FilmRepository;
-import off.itgoes.challenge.programmazione.sala.Sala;
 import off.itgoes.challenge.programmazione.tecnologia.Tecnologia;
 
 @DataJpaTest
@@ -33,133 +24,45 @@ public class FilmDatabaseTests {
 
 	@Autowired
 	private TestEntityManager entityManager;
-	
-	@Autowired
-	private FilmRepository filmRepository;
-	
+		
 	private Tecnologia savedTecnologiaEntity = null;
-	private Sala savedSalaEntity = null;
 	
 	@BeforeEach
 	public void creaTecnologiaAndSala() {
 		
 		savedTecnologiaEntity = TestHelperTecnologia.creaTecnologia(entityManager, "IMAX");
-		savedSalaEntity = TestHelperSala.creaSala(entityManager, "sala 1", savedTecnologiaEntity, ConstantsTestHelper.NUMERO_MINIMO_POSTI);
 	}
 	
 	@Test
 	public void givenNullName_whenCreated_thenThrowsException() {
 		
 		// given
-		String nome = null;
-		LocalDate dataInizio = LocalDate.of(2025, 1, 1);
-		LocalDate dataFine = LocalDate.of(2025, 1, 14);
+		String titolo = null;
 		
 		// when then
-		assertThrows(ConstraintViolationException.class, () -> TestHelperFilm.createFilm(entityManager, nome, 
-				dataInizio, dataFine, 
-				savedTecnologiaEntity, savedSalaEntity));
+		assertThrows(ConstraintViolationException.class, () -> TestHelperFilm.createFilm(
+				entityManager, titolo, savedTecnologiaEntity));
 	}
 	
 	@Test
 	public void givenEmptyName_whenCreated_thenThrowsException() {
 		
 		// given
-		String nome = "";
-		LocalDate dataInizio = LocalDate.of(2025, 1, 1);
-		LocalDate dataFine = LocalDate.of(2025, 1, 14);
+		String titolo = "";
 		
 		// when then
-		assertThrows(ConstraintViolationException.class, () -> TestHelperFilm.createFilm(entityManager, nome, 
-				dataInizio, dataFine, 
-				savedTecnologiaEntity, savedSalaEntity));
+		assertThrows(ConstraintViolationException.class, () -> TestHelperFilm.createFilm(
+				entityManager, titolo, savedTecnologiaEntity));
 	}
 	
 	@Test
-	public void givenNullDataInizio_whenCreated_thenThrowsException() {
+	public void givenNullTecnologia_whenCreated_thenThrowsException() {
 		
 		// given
-		String nome = "Il dottor Stranamore";
-		LocalDate dataInizio = null;
-		LocalDate dataFine = LocalDate.of(2025, 1, 14);
+		String titolo = "titolo";
 		
 		// when then
-		assertThrows(ConstraintViolationException.class, () -> TestHelperFilm.createFilm(entityManager, nome, 
-				dataInizio, dataFine, 
-				savedTecnologiaEntity, savedSalaEntity));
-	}
-	
-	@Test
-	public void givenNullDataFine_whenCreated_thenThrowsException() {
-		
-		// given
-		String nome = "Il dottor Stranamore";
-		LocalDate dataInizio = LocalDate.of(2025, 1, 14);
-		LocalDate dataFine = null;
-		
-		// when then
-		assertThrows(ConstraintViolationException.class, () -> TestHelperFilm.createFilm(entityManager, nome, 
-				dataInizio, dataFine, 
-				savedTecnologiaEntity, savedSalaEntity));
-	}
-	
-	@Test
-	public void givenFilmsInProgrammazionePresenti_whenSearched_thenRetrievedOk() {
-		
-		// given
-		creaInsiemeDiFilmPerTestRicerca();
-		
-		// when
-		LocalDate now = LocalDate.of(2025, 01, 22);
-		
-		List<Film> filmsInProgrammazione = filmRepository
-				.findAllByInizioProgrammazioneLessThanEqualAndFineProgrammazioneGreaterThanEqual(now, now);
-		
-		// then
-		assertEquals(2, filmsInProgrammazione.size());
-	}
-
-	@Test
-	public void givenStoricoFilmsPresente_whenSearched_thenRetrievedOk() {
-		
-		// given
-		creaInsiemeDiFilmPerTestRicerca();
-		
-		// when
-		LocalDate now = LocalDate.of(2025, 01, 22);
-		
-		List<Film> filmsInProgrammazione = filmRepository
-				.findAllByFineProgrammazioneBefore(now);
-		
-		// then
-		assertEquals(3, filmsInProgrammazione.size());
-	}
-	
-	public void creaInsiemeDiFilmPerTestRicerca() {
-				
-		// su ricerca il 2025-01-22: passato
-		TestHelperFilm.createFilm(entityManager, "Il dottor Stranamore", 
-				LocalDate.of(2025, 1, 1), LocalDate.of(2025, 1, 14), 
-				savedTecnologiaEntity, savedSalaEntity);
-		
-		// su ricerca il 2025-01-22: passato
-		TestHelperFilm.createFilm(entityManager, "2001: odissea nello spazio", 
-				LocalDate.of(2025, 1, 8), LocalDate.of(2025, 1, 21), 
-				savedTecnologiaEntity, savedSalaEntity);
-		
-		// su ricerca il 2025-01-22: passato
-		TestHelperFilm.createFilm(entityManager, "Barry Lyndon", 
-				LocalDate.of(2025, 1, 15), LocalDate.of(2025, 1, 21), 
-				savedTecnologiaEntity, savedSalaEntity);
-		
-		// su ricerca il 2025-01-22: in programmazione
-		TestHelperFilm.createFilm(entityManager, "Arancia meccanica", 
-				LocalDate.of(2025, 1, 8), LocalDate.of(2025, 1, 28), 
-				savedTecnologiaEntity, savedSalaEntity);
-		
-		// su ricerca il 2025-01-22: in programmazione
-		TestHelperFilm.createFilm(entityManager, "Full Metal Jacket", 
-				LocalDate.of(2025, 1, 15), LocalDate.of(2025, 1, 28), 
-				savedTecnologiaEntity, savedSalaEntity);
+		assertThrows(ConstraintViolationException.class, () -> TestHelperFilm.createFilm(
+				entityManager, titolo, null));
 	}
 }
