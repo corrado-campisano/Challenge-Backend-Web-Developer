@@ -1,34 +1,37 @@
-package off.itgoes.challenge.programmazione.film;
+package off.itgoes.challenge.programmazione.proiezione;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
-import off.itgoes.challenge.programmazione.proiezione.ProiezioneDto;
-import off.itgoes.challenge.programmazione.proiezione.ProiezioneService;
 
 @RestController
 @RequiredArgsConstructor
-public class FilmController {
+public class ProiezioneController {
 
 	private final ProiezioneService proiezioneService;
 	
-	@GetMapping("/filmsInProgrammazione/")
-	public ResponseEntity<List<ProiezioneDto>> getFilmsInProgrammazione() {
+	@GetMapping("/filmsInProgrammazione")
+	public ResponseEntity<List<ProiezioneDto>> getFilmsInProgrammazione(
+			@RequestParam LocalDate inizioProgrammazione,
+			@RequestParam LocalDate fineProgrammazione) {
 		
-		List<ProiezioneDto> lista = proiezioneService.getFilmsInProgrammazione();
+		List<ProiezioneDto> lista = proiezioneService.getFilmsInProgrammazione(inizioProgrammazione, fineProgrammazione);
 		
 		if (lista==null || lista.isEmpty()) {
-			return new ResponseEntity<>(new ArrayList<>(), HttpStatus.NO_CONTENT);
+			//return new ResponseEntity<>(new ArrayList<>(), HttpStatus.NO_CONTENT);
+			return new ResponseEntity<>(new ArrayList<>(), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(lista, HttpStatus.OK);
 		}
-	}	
+	}
 
 	@GetMapping("/storicoFilmsPassati/")
 	public ResponseEntity<List<ProiezioneDto>> getStoricoFilmsPassati() {

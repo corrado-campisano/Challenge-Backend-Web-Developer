@@ -20,6 +20,9 @@ public class ProiezioneFactory {
 		dto.setTitoloFilm(entity.getFilm().getTitolo());
 		dto.setIdFilm(entity.getFilm().getId());
 		
+		dto.setIdSala(entity.getSala().getId());
+		dto.setNomeSala(entity.getSala().getNome());
+		
 		return dto;
 	}
 	

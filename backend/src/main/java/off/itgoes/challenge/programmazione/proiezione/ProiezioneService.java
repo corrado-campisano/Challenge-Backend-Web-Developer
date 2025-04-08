@@ -18,11 +18,14 @@ public class ProiezioneService {
 	
 	private final ProiezioneRepository proiezioneRepository;
 	
-	public List<ProiezioneDto> getFilmsInProgrammazione() {
-		LocalDate now = LocalDate.now();
+	public List<ProiezioneDto> getFilmsInProgrammazione(LocalDate inizioProgrammazione, LocalDate fineProgrammazione) {
+		
+		if (inizioProgrammazione==null) inizioProgrammazione = LocalDate.now();
+		if (fineProgrammazione==null) fineProgrammazione = LocalDate.now();
 		
 		List<Proiezione> entities = proiezioneRepository
-				.findAllByInizioProgrammazioneLessThanEqualAndFineProgrammazioneGreaterThanEqual(now, now);
+				.findAllByInizioProgrammazioneLessThanEqualAndFineProgrammazioneGreaterThanEqual(
+						inizioProgrammazione, fineProgrammazione);
 		
 		List<ProiezioneDto> filmsInProgrammazione = entities.stream()
 				.map(entity -> ProiezioneFactory.getDtoFromEntity(entity))

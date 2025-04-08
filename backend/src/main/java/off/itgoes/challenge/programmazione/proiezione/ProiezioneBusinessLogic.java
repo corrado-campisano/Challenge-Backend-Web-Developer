@@ -39,7 +39,7 @@ public class ProiezioneBusinessLogic {
 		Tecnologia tecnologiaFilm = proiezione.getFilm().getTecnologiaFilm();
 		Tecnologia tecnologiaSala = proiezione.getSala().getTecnologiaSala();
 		
-		if (tecnologiaFilm.getId() != tecnologiaSala.getId()) {
+		if (!tecnologiaFilm.getId().equals(tecnologiaSala.getId())) {
 			
 			ProiezioneTecnologyException ex = new ProiezioneTecnologyException("La tecnologia della sala "
 					+ "(ID: " + tecnologiaSala.getId() + ", "
