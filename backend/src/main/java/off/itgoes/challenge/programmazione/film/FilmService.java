@@ -15,7 +15,7 @@ public class FilmService {
 
 	private final FilmRepository filmRepository;
 	
-	public Film validateAndCreateFilm(FilmDto film) {
+	public Film createFilm(FilmDto film) {
 		
 		// validazione: massimo tre settimane, minimo una
 		Period durataProgrammazione = Period
@@ -29,8 +29,11 @@ public class FilmService {
 		Film entity = new Film();
 		
 		entity.setTitolo(film.getTitolo());
+		
 		entity.setInizioProgrammazione(film.getInizioProgrammazione());
 		entity.setFineProgrammazione(film.getFineProgrammazione());
+		
+		
 		
 		Film savedEntity = filmRepository.save(entity);
 		

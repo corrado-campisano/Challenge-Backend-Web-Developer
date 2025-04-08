@@ -9,6 +9,12 @@ public class FilmFactory {
 		
 		BeanUtils.copyProperties(entity, dto);
 		
+		dto.setNomeSala(entity.getSala().getNome());
+		dto.setIdSala(entity.getSala().getId());
+		
+		dto.setNomeTecnologia(entity.getTecnologiaFilm().getNome());
+		dto.setIdTecnologia(entity.getTecnologiaFilm().getId());
+		
 		return dto;
 	}
 	
@@ -16,7 +22,7 @@ public class FilmFactory {
 		Film entity = new Film();
 		
 		BeanUtils.copyProperties(dto, entity);
-		
+				
 		return entity;
 	}
 }

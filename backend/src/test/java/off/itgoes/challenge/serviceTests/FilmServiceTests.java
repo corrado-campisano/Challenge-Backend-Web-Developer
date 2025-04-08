@@ -12,10 +12,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
+import off.itgoes.challenge.ConstantsTestHelper;
 import off.itgoes.challenge.programmazione.film.Film;
 import off.itgoes.challenge.programmazione.film.FilmDto;
 import off.itgoes.challenge.programmazione.film.FilmPeriodException;
 import off.itgoes.challenge.programmazione.film.FilmService;
+import off.itgoes.challenge.programmazione.sala.Sala;
+import off.itgoes.challenge.programmazione.sala.SalaRepository;
+import off.itgoes.challenge.programmazione.tecnologia.Tecnologia;
+import off.itgoes.challenge.programmazione.tecnologia.TecnologiaRepository;
 
 @SpringBootTest
 @Transactional
@@ -23,6 +28,12 @@ public class FilmServiceTests {
 
 	@Autowired
 	private FilmService filmService;
+	
+	@Autowired
+	TecnologiaRepository tecnologiaRepository;
+	
+	@Autowired
+	SalaRepository salaRepository;
 
 	@Test
 	public void givenPeriodoProgrammazioneMenoDiUnaSettimana_whenCreated_thenThrowsException() {
@@ -39,7 +50,7 @@ public class FilmServiceTests {
 		filmDto.setFineProgrammazione(fineProgrammazione);
 
 		// when + then
-		assertThrows(FilmPeriodException.class, () -> filmService.validateAndCreateFilm(filmDto));
+		assertThrows(FilmPeriodException.class, () -> filmService.createFilm(filmDto));
 	}
 
 	@Test
@@ -57,7 +68,7 @@ public class FilmServiceTests {
 		filmDto.setFineProgrammazione(fineProgrammazione);
 
 		// when + then
-		assertThrows(FilmPeriodException.class, () -> filmService.validateAndCreateFilm(filmDto));
+		assertThrows(FilmPeriodException.class, () -> filmService.createFilm(filmDto));
 	}
 
 	@Test
@@ -75,7 +86,7 @@ public class FilmServiceTests {
 		filmDto.setFineProgrammazione(fineProgrammazione);
 
 		// when
-		Film entity = filmService.validateAndCreateFilm(filmDto);
+		Film entity = filmService.createFilm(filmDto);
 
 		// then
 		assertTrue(entity.getId() > 0);
@@ -108,6 +119,17 @@ public class FilmServiceTests {
 	}
 
 	public void creaInsiemeDiFilmPerTestRicerca() {
+		
+		Tecnologia tecnologiaEntity = new Tecnologia();
+		tecnologiaEntity.setNome("IMAX");
+		Tecnologia savedTecnologiaEntity = tecnologiaRepository.save(tecnologiaEntity);
+		
+		Sala salaEntity = new Sala();
+		salaEntity.setTecnologiaSala(savedTecnologiaEntity);
+		salaEntity.setNome("sala 1");
+		salaEntity.setPosti(ConstantsTestHelper.NUMERO_MINIMO_POSTI);
+		Sala savedSalaEntity = salaRepository.save(salaEntity );
+		
 		// qui utilizzo date "dinamiche", come richiesto dal service,
 		// ma con i valori replicati da quelle "statiche" del test sul repository:
 		// vedere metodo analogo nella classe "FilmRepositoryTests"
@@ -117,30 +139,30 @@ public class FilmServiceTests {
 		TestHelperFilm.createFilm(filmService, "Il dottor Stranamore", 
 				LocalDate.now().minusDays(21),	// era 1	= 22 - 21
 				LocalDate.now().minusDays(8),	// era 14	= 22 - 8
-				"sala 1");
+				savedTecnologiaEntity, savedSalaEntity);
 
 		// su ricerca il 2025-01-22: passato
 		TestHelperFilm.createFilm(filmService, "2001: odissea nello spazio", 
 				LocalDate.now().minusDays(14),	// era 8	= 22 - 14
 				LocalDate.now().minusDays(1),	// era 21	= 22 - 1
-				"sala 2");
+				savedTecnologiaEntity, savedSalaEntity);
 
 		// su ricerca il 2025-01-22: passato
 		TestHelperFilm.createFilm(filmService, "Barry Lyndon", 
 				LocalDate.now().minusDays(7),	// era 15	= 22 - 7
 				LocalDate.now().minusDays(1),	// era 21	= 22 - 1
-				"sala 1");
+				savedTecnologiaEntity, savedSalaEntity);
 
 		// su ricerca il 2025-01-22: in programmazione
 		TestHelperFilm.createFilm(filmService, "Arancia meccanica", 
 				LocalDate.now().minusDays(14),	// era 8	= 22 - 14
 				LocalDate.now().plusDays(6),		// era 28	= 22 + 6
-				"sala 3");
+				savedTecnologiaEntity, savedSalaEntity);
 		
 		// su ricerca il 2025-01-22: in programmazione
 		TestHelperFilm.createFilm(filmService, "Full Metal Jacket", 
 				LocalDate.now().minusDays(7),	// era 15	= 22 - 7
 				LocalDate.now().plusDays(6),		// era 28	= 22 + 6
-				"sala 4");
+				savedTecnologiaEntity, savedSalaEntity);
 	}
 }

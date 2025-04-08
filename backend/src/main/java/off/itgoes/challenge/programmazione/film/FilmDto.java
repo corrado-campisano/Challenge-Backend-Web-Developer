@@ -16,5 +16,9 @@ public class FilmDto {
 	
 	private LocalDate fineProgrammazione;
 	
-	private String salaDiProiezione;
+	private String nomeSala;
+	private Long idSala;
+	
+	private String nomeTecnologia;
+	private Long idTecnologia;
 }
