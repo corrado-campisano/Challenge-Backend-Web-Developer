@@ -25,6 +25,10 @@ import off.itgoes.challenge.programmazione.tecnologia.Tecnologia;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)
+/** implementa i test per:
+ *  - validazione constraint a livello di entity (se presenti)
+ *  - validazione query a livello di repository (se presenti)
+ */
 public class FilmDatabaseTests {
 
 	@Autowired
@@ -33,13 +37,14 @@ public class FilmDatabaseTests {
 	@Autowired
 	private FilmRepository filmRepository;
 	
-	private Tecnologia tecnologia = null;
-	private Sala sala = null;
+	private Tecnologia savedTecnologiaEntity = null;
+	private Sala savedSalaEntity = null;
 	
 	@BeforeEach
 	public void creaTecnologiaAndSala() {
-		tecnologia = TestHelperTecnologia.creaTecnologia(entityManager, "IMAX");
-		sala = TestHelperSala.creaSala(entityManager, "sala 1", tecnologia, ConstantsTestHelper.NUMERO_MINIMO_POSTI);
+		
+		savedTecnologiaEntity = TestHelperTecnologia.creaTecnologia(entityManager, "IMAX");
+		savedSalaEntity = TestHelperSala.creaSala(entityManager, "sala 1", savedTecnologiaEntity, ConstantsTestHelper.NUMERO_MINIMO_POSTI);
 	}
 	
 	@Test
@@ -53,7 +58,7 @@ public class FilmDatabaseTests {
 		// when then
 		assertThrows(ConstraintViolationException.class, () -> TestHelperFilm.createFilm(entityManager, nome, 
 				dataInizio, dataFine, 
-				tecnologia, sala));
+				savedTecnologiaEntity, savedSalaEntity));
 	}
 	
 	@Test
@@ -67,7 +72,7 @@ public class FilmDatabaseTests {
 		// when then
 		assertThrows(ConstraintViolationException.class, () -> TestHelperFilm.createFilm(entityManager, nome, 
 				dataInizio, dataFine, 
-				tecnologia, sala));
+				savedTecnologiaEntity, savedSalaEntity));
 	}
 	
 	@Test
@@ -81,7 +86,7 @@ public class FilmDatabaseTests {
 		// when then
 		assertThrows(ConstraintViolationException.class, () -> TestHelperFilm.createFilm(entityManager, nome, 
 				dataInizio, dataFine, 
-				tecnologia, sala));
+				savedTecnologiaEntity, savedSalaEntity));
 	}
 	
 	@Test
@@ -95,7 +100,7 @@ public class FilmDatabaseTests {
 		// when then
 		assertThrows(ConstraintViolationException.class, () -> TestHelperFilm.createFilm(entityManager, nome, 
 				dataInizio, dataFine, 
-				tecnologia, sala));
+				savedTecnologiaEntity, savedSalaEntity));
 	}
 	
 	@Test
@@ -135,26 +140,26 @@ public class FilmDatabaseTests {
 		// su ricerca il 2025-01-22: passato
 		TestHelperFilm.createFilm(entityManager, "Il dottor Stranamore", 
 				LocalDate.of(2025, 1, 1), LocalDate.of(2025, 1, 14), 
-				tecnologia, sala);
+				savedTecnologiaEntity, savedSalaEntity);
 		
 		// su ricerca il 2025-01-22: passato
 		TestHelperFilm.createFilm(entityManager, "2001: odissea nello spazio", 
 				LocalDate.of(2025, 1, 8), LocalDate.of(2025, 1, 21), 
-				tecnologia, sala);
+				savedTecnologiaEntity, savedSalaEntity);
 		
 		// su ricerca il 2025-01-22: passato
 		TestHelperFilm.createFilm(entityManager, "Barry Lyndon", 
 				LocalDate.of(2025, 1, 15), LocalDate.of(2025, 1, 21), 
-				tecnologia, sala);
+				savedTecnologiaEntity, savedSalaEntity);
 		
 		// su ricerca il 2025-01-22: in programmazione
 		TestHelperFilm.createFilm(entityManager, "Arancia meccanica", 
 				LocalDate.of(2025, 1, 8), LocalDate.of(2025, 1, 28), 
-				tecnologia, sala);
+				savedTecnologiaEntity, savedSalaEntity);
 		
 		// su ricerca il 2025-01-22: in programmazione
 		TestHelperFilm.createFilm(entityManager, "Full Metal Jacket", 
 				LocalDate.of(2025, 1, 15), LocalDate.of(2025, 1, 28), 
-				tecnologia, sala);
+				savedTecnologiaEntity, savedSalaEntity);
 	}
 }

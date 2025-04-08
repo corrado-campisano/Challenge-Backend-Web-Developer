@@ -18,6 +18,10 @@ import off.itgoes.challenge.programmazione.tecnologia.Tecnologia;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)
+/** implementa i test per:
+ *  - validazione constraint a livello di entity (se presenti)
+ *  - validazione query a livello di repository (se presenti)
+ */
 public class SalaDatabaseTests {
 	
 	@Autowired

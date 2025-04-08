@@ -1,39 +1,31 @@
 package off.itgoes.challenge.programmazione.film;
 
 import java.time.LocalDate;
-import java.time.Period;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
+import off.itgoes.challenge.programmazione.sala.SalaRepository;
+import off.itgoes.challenge.programmazione.tecnologia.TecnologiaRepository;
 
 @Service
 @RequiredArgsConstructor
 public class FilmService {
 
+	private final TecnologiaRepository tecnologiaRepository;
+	private final SalaRepository salaRepository;
 	private final FilmRepository filmRepository;
 	
-	public Film createFilm(FilmDto film) {
+	private final FilmBusinessLogic filmBusinessLogic;
 		
-		// validazione: massimo tre settimane, minimo una
-		Period durataProgrammazione = Period
-				.between(film.getInizioProgrammazione(), film.getFineProgrammazione())
-				.plusDays(1);
+	public Film createFilm(FilmDto filmDto) {
 		
-		if (durataProgrammazione.getDays()<7 || durataProgrammazione.getDays()>21) {
-			throw new FilmPeriodException("La durata di programmazione del film e' da 1 a 3 settimane");
-		}
+		Film entity = FilmFactory.getEntityFromDto(filmDto, tecnologiaRepository, salaRepository);		
 		
-		Film entity = new Film();
-		
-		entity.setTitolo(film.getTitolo());
-		
-		entity.setInizioProgrammazione(film.getInizioProgrammazione());
-		entity.setFineProgrammazione(film.getFineProgrammazione());
-		
-		
+		filmBusinessLogic.validaDateFilm(entity);
+		filmBusinessLogic.validaTecnologiaFilmVsSala(entity);
 		
 		Film savedEntity = filmRepository.save(entity);
 		

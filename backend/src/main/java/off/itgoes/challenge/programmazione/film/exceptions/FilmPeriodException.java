@@ -1,4 +1,4 @@
-package off.itgoes.challenge.programmazione.film;
+package off.itgoes.challenge.programmazione.film.exceptions;
 
 public class FilmPeriodException extends IllegalArgumentException {
 

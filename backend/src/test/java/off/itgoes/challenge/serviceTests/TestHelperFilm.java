@@ -14,6 +14,19 @@ public class TestHelperFilm {
 			LocalDate inizioProgrammazione, LocalDate fineProgrammazione,
 			Tecnologia tecnologia, Sala sala) {
 		
+		FilmDto filmDto = createFilmDto(titolo, 
+				inizioProgrammazione, fineProgrammazione,
+				tecnologia, sala);
+		
+		Film savedEntity = filmService.createFilm(filmDto);
+		
+		return savedEntity;
+	}
+	
+	public static FilmDto createFilmDto(String titolo, 
+			LocalDate inizioProgrammazione, LocalDate fineProgrammazione, 
+			Tecnologia tecnologia, Sala sala) {
+		
 		FilmDto filmDto = new FilmDto();
 		
 		filmDto.setTitolo(titolo);
@@ -21,14 +34,12 @@ public class TestHelperFilm {
 		filmDto.setInizioProgrammazione(inizioProgrammazione);
 		filmDto.setFineProgrammazione(fineProgrammazione);
 		
-		filmDto.setNomeTecnologia(tecnologia.getNome());
 		filmDto.setIdTecnologia(tecnologia.getId());
+		filmDto.setNomeTecnologia(tecnologia.getNome());
 		
-		filmDto.setNomeSala(sala.getNome());
 		filmDto.setIdSala(sala.getId());
+		filmDto.setNomeSala(sala.getNome());
 		
-		Film savedEntity = filmService.createFilm(filmDto);
-		
-		return savedEntity;
+		return filmDto;
 	}
 }
