@@ -26,7 +26,7 @@ public class SalaDatabaseTests {
 	
 	@Autowired
 	private TestEntityManager entityManager;
-	
+		
 	@Test
 	public void givenNonExistingTecnologia_whenCreated_thenThrowsException() {
 

@@ -7,11 +7,15 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
+import off.itgoes.challenge.programmazione.film.FilmRepository;
+import off.itgoes.challenge.programmazione.sala.SalaRepository;
 
 @Service
 @RequiredArgsConstructor
 public class ProiezioneService {
 
+	private final ProiezioneBusinessLogic proiezioneBusinessLogic;
+	
 	private final ProiezioneRepository proiezioneRepository;
 	
 	public List<ProiezioneDto> getFilmsInProgrammazione() {
@@ -37,5 +41,19 @@ public class ProiezioneService {
 				.collect(Collectors.toList());
 		
 		return filmsPassati;
+	}
+
+	public Proiezione createProiezione(ProiezioneDto proiezioneDto, 
+			FilmRepository filmRepository, SalaRepository salaRepository) {
+		
+		Proiezione proiezione = ProiezioneFactory.getEntityFromDto(proiezioneDto, filmRepository, salaRepository);
+		
+		proiezioneBusinessLogic.validaDateFilm(proiezione);
+		proiezioneBusinessLogic.validaTecnologiaFilmVsSala(proiezione);
+		proiezioneBusinessLogic.validaSalaLiberaNelPeriodo(proiezione, proiezioneRepository);
+		
+		Proiezione savedProiezione = proiezioneRepository.save(proiezione);
+		
+		return savedProiezione;
 	}
 }

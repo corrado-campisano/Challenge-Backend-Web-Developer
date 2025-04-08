@@ -153,5 +153,5 @@ public class ProiezioneDatabaseTests {
 		TestHelperProiezione.createProiezione(entityManager,  
 				LocalDate.of(2025, 1, 15), LocalDate.of(2025, 1, 28), 
 				fmj, savedSalaEntity);
-	}		
+	}	
 }
