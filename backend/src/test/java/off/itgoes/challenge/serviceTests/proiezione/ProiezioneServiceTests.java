@@ -233,9 +233,10 @@ public class ProiezioneServiceTests {
 
 		// given
 		creaInsiemeDiProiezioniPerTestRicerca();
+		LocalDate now = LocalDate.now();
 
 		// when
-		List<ProiezioneDto> filmsInProgrammazione = proiezioneService.getFilmsInProgrammazione();
+		List<ProiezioneDto> filmsInProgrammazione = proiezioneService.getFilmsInProgrammazione(now, now);
 
 		// then
 		assertEquals(2, filmsInProgrammazione.size());
