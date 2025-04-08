@@ -7,7 +7,7 @@ import { Film } from '../model/film.type';
 
 export class StoricoProgrammazioneService {
 
-	url = 'http://localhost:8080/storicoFilmsPassati';
+	url = 'http://localhost:8080/storicoFilmsPassati/';
 	
 	async getStoricoFilms(): Promise<Film[]> {
 		const data = await fetch(this.url);
