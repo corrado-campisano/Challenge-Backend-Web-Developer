@@ -12,7 +12,7 @@
 	
 	<groupId>off.itgoes.challenge</groupId>
 	<artifactId>challenge</artifactId>
-	<version>0.0.2_gestione_sale</version>
+	<version>0.0.3</version>
 
 	<name>challenge</name>
 	<description>challenge</description>
